@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ar-SA">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.ctfassets.net https://contentfulproxy.stadion.io https://a.espncdn.com; connect-src 'self' https://api.open-meteo.com; frame-src 'none'; object-src 'none'">
+  <meta name="viewport" content="width=1920, user-scalable=no">
+  <title data-i18n="Home">Início</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/personal.css">
+</head>
+<body>
+  <div id="stage">
+    <canvas id="sky" width="1920" height="1080"></canvas>
+    <div id="landscape" aria-hidden="true">
+      <div class="landscape-layer"></div>
+      <div class="landscape-layer"></div>
+      <div class="landscape-haze"></div>
+    </div>
+    <canvas id="precip" width="1920" height="1080"></canvas>
+    <div class="flash" id="flash"></div>
+    <div class="scrim" id="scrim"></div>
+
+    <main id="home" class="scope">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark" data-icon="spark"></span><span data-i18n="Home">Início</span></div>
+        <nav class="actions">
+          <button class="icon-btn focusable" data-action="home" data-icon="home" data-i18n-label="Home" aria-label="Início"></button>
+          <button class="icon-btn focusable" data-action="forecast" data-icon="forecast" data-i18n-label="Forecast" aria-label="Previsão meteorológica"></button>
+          <button class="icon-btn focusable" data-action="ambient" data-icon="image" data-i18n-label="Ambient mode" aria-label="Modo ambiente"></button>
+          <button class="icon-btn focusable" data-action="settings" data-icon="sliders" data-i18n-label="Settings" aria-label="Definições"></button>
+        </nav>
+        <div class="place" id="place"></div>
+        <div class="divider"></div>
+        <div class="clock" id="clock"></div>
+      </header>
+
+      <section id="personalDashboard" class="personal-dashboard" aria-label="الصلاة ومباريات الفريق المفضل">
+        <article id="prayerPanel" class="personal-card prayer-card" dir="rtl">
+          <div id="prayerTitle" class="personal-eyebrow">مواقيت الصلاة</div>
+          <h2 id="nextPrayer">جارٍ تحميل المواقيت…</h2>
+          <div class="prayer-times" id="prayerTimes"></div>
+          <div class="personal-source" id="prayerSource">حساب أم القرى · توقيت السعودية</div>
+        </article>
+        <article id="matchPanel" class="personal-card football-card" dir="rtl">
+          <div id="matchTitle" class="personal-eyebrow">المباراة القادمة</div>
+          <div class="match-main" id="matchMain"><h2>جارٍ تحميل المباريات…</h2></div>
+          <div class="match-following" id="matchFollowing"></div>
+          <div class="personal-source" id="matchSource">جارٍ الاتصال بمصدر المباريات…</div>
+        </article>
+      </section>
+      <section class="hero">
+        <div class="greeting">
+          <div class="date" id="date"></div>
+          <h1 id="greet"></h1>
+          <p class="sub" id="sub"></p>
+          <p class="sun" id="sunline"></p>
+        </div>
+        <div class="weather focusable" id="weather" data-action="forecast">
+          <div class="wx-main">
+            <div class="wx-icon" id="wxIcon"></div>
+            <div class="wx-temp" id="wxTemp">--°</div>
+            <div class="wx-text">
+              <div class="wx-cond" id="wxCond" data-i18n="Loading weather…">A carregar a meteorologia…</div>
+              <div class="wx-hilo" id="wxHilo"></div>
+            </div>
+          </div>
+          <div class="wx-details" id="wxDetails"></div>
+          <div class="wx-hours" id="wxHours"></div>
+        </div>
+      </section>
+
+      <section class="apps">
+        <div class="grid-viewport"><div class="grid" id="grid"></div></div>
+      </section>
+    </main>
+
+    <section id="forecast" class="overlay scope" hidden>
+      <div class="panel forecast-panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow" id="fcPlace"></div>
+            <h3 data-i18n="7-day forecast">Previsão para 7 dias</h3>
+          </div>
+          <button class="pill-btn focusable" data-action="close" data-i18n="Close">Fechar</button>
+        </div>
+        <div class="fc-days" id="fcDays"></div>
+        <div class="fc-facts" id="fcFacts"></div>
+      </div>
+    </section>
+
+    <section id="settings" class="overlay scope" hidden>
+      <div class="panel settings-panel">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow" data-i18n="Home">Início</div>
+            <h3 data-i18n="Settings">Definições</h3>
+          </div>
+          <button class="pill-btn focusable" data-action="close" data-i18n="Close">Fechar</button>
+        </div>
+        <div class="settings-body">
+          <div class="settings-col" id="prefs"></div>
+          <div class="settings-col">
+            <div class="col-title"><strong data-i18n="Apps on Home">Aplicações no início</strong> <span data-i18n="Press OK to show or hide">Prima OK para mostrar ou ocultar</span></div>
+            <div class="app-list" id="appList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ambient" class="ambient scope" hidden>
+      <div class="amb-time" id="ambTime"></div>
+      <div class="amb-date" id="ambDate"></div>
+      <div class="amb-wx" id="ambWx"></div>
+      <button class="focusable amb-exit" data-action="close" data-i18n-label="Exit ambient mode" aria-label="Sair do modo ambiente"></button>
+    </section>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/weather.js"></script>
+  <script src="js/sky.js"></script>
+  <script src="js/landscape.js"></script>
+  <script src="js/apps.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/personal.js"></script>
+</body>
+</html>

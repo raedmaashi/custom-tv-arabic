@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Custom TV Arabic</string>
+    <string name="launch_failed">تعذّر فتح التطبيق</string>
+    <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">#03060D</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:colorAccent">#A6CFF5</item>
+    </style>
+</resources>

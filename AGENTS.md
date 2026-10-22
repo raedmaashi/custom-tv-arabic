@@ -1,0 +1,16 @@
+# Instructions for a local AI agent
+
+This repository is a customizable Android TV launcher, not a Samsung root toolkit. Respond in the user's language. Read `docs/AGENT_SETUP.md`, `docs/CLEANUP.md`, and `docs/SOURCES.md` before working on a television.
+
+1. Ask the user, in one concise batch, for city/country, favorite football club, preferred apps/order, visible panels, optional cleanup and optional keep-awake. Do not assume the example's Tabuk/Al Hilal preferences. Ask about a font only if relevant; the public source has no Thmanyah font files.
+2. Work locally. Discover available JDK/SDK/Python/ADB tools. Resolve real coordinates, IANA timezone, calculation method, club IDs and competition slugs from current primary sources. Never invent fixture dates or crests. Explain the competitions actually covered.
+3. Make a gitignored `profiles/*.local.json`, generate configuration, run meaningful checks, and build locally. Preserve existing app settings and other functionality. Never clear app data to change defaults without a concrete reason and user authorization.
+4. Use an exact user-provided TV address or explicit USB device. No subnet scanning, guessed serial, hardcoded IP, guessed debugging port, root exploits, firmware changes, or unrelated package removal. The user may need to enable/pair debugging physically; report the real blocker if the service is unavailable.
+5. Inspect the TV read-only first. Match manufacturer/model/hardware serial to the user's intended television. Every mutation requires `scripts/tv.py --device TARGET --serial VERIFIED_SERIAL`. Never bypass its identity or protected-package checks.
+6. Keep the original launcher enabled. Install/open this app alongside it first. Verify the actual display, remote, apps, settings, data and recovery route before making it Home. Store state locally; never commit serials, addresses, inspection results or backups.
+7. Cleanup is optional and separate from installation. Preview the exact packages, reasons and device fit; execute only the cleanup scope the user selected. The provided two-package list was tested on an IMPEX/Expressluck MediaTek family and is not universal. Do not add blanket debloat lists. Never uninstall packages. Preserve and restore exact prior enabled states.
+8. Keep-awake is optional. Save prior settings, and explain that vendor timers/HDMI CEC can still power off a TV. Ambient mode is manual, not an automatic system screensaver. Do not disable unrelated services to force either behavior.
+9. Font files are not licensed for raw redistribution here. Use `scripts/import_font.py` only with the user's lawfully obtained local files and applicable permission. Do not publish raw fonts or a font-bearing APK. Public screenshots explicitly show a personal font customization.
+10. Finish with the actual verification results, local APK/state paths, restoration command and unresolved limits. Do not claim installation succeeded when only a build passed. Do not publish files or message third parties unless the user requested it.
+
+Use the scripts instead of improvised destructive ADB recipes. A repo link does not grant access to a reader's TV or replace their preferences. Keep author credits and licenses.

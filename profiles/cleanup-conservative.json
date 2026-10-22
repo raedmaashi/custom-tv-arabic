@@ -1,0 +1,8 @@
+{
+  "name": "تنظيف محافظ — تعطيل فقط دون حذف",
+  "testedFamily": "IMPEX / Expressluck Android TV (MediaTek). Other models require individual review.",
+  "packages": [
+    {"package": "com.mediatek.android.leanbacklauncher.partnercustomizer", "reason": "تخصيصات الشريك لواجهة MediaTek الأصلية؛ راجع وجود الحزمة وطراز الجهاز أولًا"},
+    {"package": "android.autoinstalls.config.google.gtvpai", "reason": "تهيئة التطبيقات المقترحة؛ لا تغيّر التطبيقات المثبتة أو Google Play"}
+  ]
+}

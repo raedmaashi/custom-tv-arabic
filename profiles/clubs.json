@@ -1,0 +1,11 @@
+{
+  "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/ksa.1/teams?limit=100",
+  "verifiedOn": "2026-10-22",
+  "clubs": [
+    {"name": "الهلال", "provider": "alhilal", "id": "929", "leagues": ["ksa.1"]},
+    {"name": "النصر", "provider": "espn", "id": "817", "leagues": ["ksa.1"]},
+    {"name": "الاتحاد", "provider": "espn", "id": "2276", "leagues": ["ksa.1"]},
+    {"name": "الأهلي", "provider": "espn", "id": "8346", "leagues": ["ksa.1"]},
+    {"name": "الشباب", "provider": "espn", "id": "793", "leagues": ["ksa.1"]}
+  ]
+}

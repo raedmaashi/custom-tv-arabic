@@ -1,0 +1,11 @@
+{
+  "city": {"name": "تبوك", "latitude": 28.3838, "longitude": 36.555, "timezone": "Asia/Riyadh"},
+  "prayer": {"method": 4, "label": "حساب أم القرى"},
+  "team": {"name": "الهلال", "provider": "alhilal", "id": "929", "leagues": ["ksa.1"]},
+  "apps": [
+    {"id": "com.google.android.youtube.tv", "name": "YouTube"},
+    {"id": "com.netflix.ninja", "name": "Netflix"},
+    {"id": "com.osn.go", "name": "OSN+"}
+  ],
+  "panels": {"showPrayers": true, "showMatches": true, "showWeather": true}
+}

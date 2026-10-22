@@ -1,0 +1,62 @@
+{
+  "fixtureUpdated": 1792674181430,
+  "fixtureError": false,
+  "preview": true,
+  "prayerReady": true,
+  "prayerUpdated": 1792674181430,
+  "tomorrow": false,
+  "nextAt": 1792681080000,
+  "nextPrayer": "المغرب",
+  "prayers": [
+    {
+      "name": "الفجر",
+      "time": "05:17"
+    },
+    {
+      "name": "الظهر",
+      "time": "12:18"
+    },
+    {
+      "name": "العصر",
+      "time": "15:33"
+    },
+    {
+      "name": "المغرب",
+      "time": "17:58"
+    },
+    {
+      "name": "العشاء",
+      "time": "19:28"
+    }
+  ],
+  "matches": [
+    {
+      "away": "الهلال",
+      "awayLogo": "https://images.ctfassets.net/eyc25wndlima/72Ghcq5Hr6A882waghjPLR/52d16ab536d34e4f805b3343c54f3da9/Main_logo_Emblem_Primary-06.png",
+      "kickoff": 1792778400000,
+      "pending": false,
+      "competition": "دوري روشن السعودي",
+      "homeLogo": "https://images.ctfassets.net/eyc25wndlima/3ATZVJbrekOMEgPKewz0E0/ebe96054e85693add683d8dbc671b1e6/Al-Qadsiah_CREST.png",
+      "home": "القادسية"
+    },
+    {
+      "away": "الهلال",
+      "awayLogo": "https://images.ctfassets.net/eyc25wndlima/72Ghcq5Hr6A882waghjPLR/52d16ab536d34e4f805b3343c54f3da9/Main_logo_Emblem_Primary-06.png",
+      "kickoff": 1793117700000,
+      "pending": false,
+      "competition": "دوري أبطال آسيا للنخبة",
+      "homeLogo": "https://images.ctfassets.net/eyc25wndlima/1hHFQudCzz3wXY8YCT4rit/cc1e5ff7ba1d4ebd5596af6d96c2bf92/Shamal-1657183031.png",
+      "home": "الشمال القطري"
+    },
+    {
+      "away": "الفتح",
+      "awayLogo": "https://images.ctfassets.net/eyc25wndlima/eww0PAf0YVOwhBeJS5n1H/96ac39afd054312679729f111af1f685/Al_Fateh_Crest.png",
+      "kickoff": 1793469600000,
+      "pending": false,
+      "competition": "دوري روشن السعودي",
+      "homeLogo": "https://images.ctfassets.net/eyc25wndlima/72Ghcq5Hr6A882waghjPLR/52d16ab536d34e4f805b3343c54f3da9/Main_logo_Emblem_Primary-06.png",
+      "home": "الهلال"
+    }
+  ],
+  "prayerError": false
+}
