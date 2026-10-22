@@ -146,6 +146,23 @@ def inspect_apk(path):
     if not found or found.group(1)!=APP_ID: raise RuntimeError('APK is not Custom TV Arabic')
 
 
+def install_application(tv, apk):
+    inspect_apk(apk)
+    previous = tv.home()
+    try:
+        if 'Success' not in tv.adb('install', '-r', apk):
+            raise RuntimeError('Install failed')
+    finally:
+        # Android can clear its preferred Home when a new Home candidate is installed.
+        if previous.split('/')[0] != 'android' and tv.home() != previous:
+            tv.shell('cmd', 'package', 'set-home-activity', '--user', '0', previous)
+            if tv.home() != previous:
+                raise RuntimeError('Previous Home could not be preserved; use the saved state to restore it')
+    started = tv.shell('am', 'start', '-W', '-n', HOME_COMPONENT)
+    if 'Status: ok' not in started:
+        raise RuntimeError(started)
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--device',required=True,help='Exact ADB target, e.g. TV_IP:PORT or USB device ID')
@@ -179,13 +196,10 @@ def main():
             raise RuntimeError('A saved state file is required for restoration')
         state=load_state(tv,args.state)
         if args.command=='install':
-            inspect_apk(args.apk)
-            if 'Success' not in tv.adb('install','-r',args.apk):raise RuntimeError('Install failed')
-            started=tv.shell('am','start','-W','-n',HOME_COMPONENT)
-            if 'Status: ok' not in started:raise RuntimeError(started)
+            install_application(tv, args.apk)
             print('Installed and opened. Default Home is unchanged; verify the screen before make-home.')
         elif args.command=='make-home':
-            if APP_ID in state['previousHome']:raise RuntimeError('No independent previous Home saved; stop and resolve a recovery target')
+            if state['previousHome'].split('/')[0] in [APP_ID, 'android']:raise RuntimeError('No independent previous Home saved; stop and resolve a recovery target')
             if not tv.shell('pm','path',APP_ID).startswith('package:'):raise RuntimeError('Install and verify Custom TV first')
             previous=tv.home()
             try:

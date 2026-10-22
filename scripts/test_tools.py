@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 import configure
 import tv
 
@@ -83,5 +84,29 @@ class ToolTests(unittest.TestCase):
             tv.cleanup(device,path,plan,apply=True)
             self.assertEqual(json.loads(path.read_text(encoding='utf-8'))['journal'][-1]['status'],'done')
             self.assertEqual(device.state,3)
+
+    def test_install_preserves_home_when_android_clears_preference(self):
+        class Fake:
+            current='com.vendor.home/.Home'
+            def home(self):return self.current
+            def adb(self,*args):
+                self.current='android/com.android.internal.app.ResolverActivity'
+                return 'Success'
+            def shell(self,*args):
+                if args[:3]==('cmd','package','set-home-activity'):
+                    self.current=args[-1]
+                    return 'Success'
+                return 'Status: ok'
+        device=Fake()
+        with patch.object(tv,'inspect_apk'):
+            tv.install_application(device,Path('test.apk'))
+        self.assertEqual(device.current,'com.vendor.home/.Home')
+
+    def test_install_cli_reaches_the_safe_install_flow(self):
+        with patch('sys.argv',['tv.py','--device','USB_DEVICE','--serial','EXPECTED','install','--apk','test.apk']), \
+                patch.object(tv,'Television'), patch.object(tv,'load_state'), \
+                patch.object(tv,'install_application') as install_action:
+            tv.main()
+            install_action.assert_called_once()
 
 if __name__=='__main__':unittest.main()
